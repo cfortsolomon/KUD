@@ -17,7 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ISuggestionService, SuggestionService>();
-var app = builder.Build();
+
 
 
 builder.Services.AddCors(options =>
@@ -37,7 +37,7 @@ builder.Services.AddCors(options =>
         });
 });
 
-
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
