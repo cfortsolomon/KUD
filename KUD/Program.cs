@@ -19,6 +19,26 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ISuggestionService, SuggestionService>();
 var app = builder.Build();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        policy =>
+        {
+            policy.WithOrigins(
+                    "http://localhost:3000",           // Local development
+                    "http://localhost:5173",           // Vite dev server
+                    "https://app.koinoniaushers.cloud/",          // Your production frontend
+                    "http://76.13.42.145:5000"
+                )
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();  // If you're using cookies/auth
+        });
+});
+
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -32,6 +52,8 @@ else
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowSpecificOrigins");
 app.UseRouting();
 
 app.UseAuthorization();
