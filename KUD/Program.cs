@@ -28,7 +28,7 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(
                     "http://localhost:3000",           // Local development
                     "http://localhost:5173",           // Vite dev server
-                    "https://app.koinoniaushers.cloud/",          // Your production frontend
+                    "https://app.koinoniaushers.cloud/",     // Your production frontend
                     "http://76.13.42.145:5000"
                 )
                 .AllowAnyMethod()
